@@ -29,20 +29,31 @@ function App() {
       })
   }
 
-  const addGuest = () => {
-    axios.post('/guests', { name: newGuestName, kidsMeal: newGuestMeal })
-      .then(response => {
-        // clear inputs
-        setNewGuestName('');
-        setNewGuestMeal(false);
+     const addGuest = () => {
+        axios.post('/guests', { name: newGuestName, kidsMeal: newGuestMeal })
+          .then(response => {
+            // clear inputs
+            setNewGuestName('');
+            setNewGuestMeal(false);
+    
+            getGuests();
+          })
+          .catch(err => {
+            alert('Error Adding Guest');
+            console.log(err);
+          })
+      };
 
-        getGuests();
-      })
-      .catch(err => {
-        alert('Error Adding Guest');
-        console.log(err);
-      })
-  };
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        if (newGuestName) {
+          addGuest();
+        }
+        else {
+          alert('The new guest needs a name!');
+        }
+      }
+      console.log(newGuestMeal)
 
 
 
@@ -53,13 +64,13 @@ function App() {
       <Header />
       <h2>Party Leader</h2>
       {guestList[0] && <h3>{guestList[0].name}</h3>}
-      <GuestForm     
+      <GuestForm 
        newGuestName = {newGuestName}
        setNewGuestName= {setNewGuestName}
        newGuestMeal= {newGuestMeal}
        setNewGuestMeal= {setNewGuestMeal}
        handleSubmit= {handleSubmit}
-       />
+      />
       <GuestList guestList={guestList}/>
       <DinnerSupplies guestList={guestList}/>
       <Footer />

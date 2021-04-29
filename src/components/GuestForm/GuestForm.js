@@ -1,25 +1,11 @@
-import { useState } from 'react';
-import axios from 'axios';
-
 
 function GuestForm(props){
 
-    const newGuestName = newGuestName.props;
-    const setNewGuestName= setNewGuestName.props;
-    const newGuestMeal= newGuestMeal.props;
-    const setNewGuestMeal= setNewGuestMeal.props;
-     handleSubmit = handleSubmit.props;
-
-    const handleSubmit = (event) => {
-        event.preventDefault();
-        if (newGuestName) {
-          addGuest();
-        }
-        else {
-          alert('The new guest needs a name!');
-        }
-      }
-      console.log(newGuestMeal)
+    const newGuestName =props.newGuestName;
+    const setNewGuestName=props.setNewGuestName;
+    const newGuestMeal=props.newGuestMeal;
+    const setNewGuestMeal=props.setNewGuestMeal;
+    const handleSubmit =props.handleSubmit;
 
     return (
         <>
